@@ -34,6 +34,26 @@ namespace Books.Access
         {
             var result = new List<Book>();
 
+            using (var cmd = _connection.CreateCommand())
+            {
+                cmd.CommandText = "SELECT * FROM book ORDER BY id;";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Létrehozzuk az új Author példányt és
+                        var book = new Book 
+                        {
+                            Id = reader.GetInt32(0),
+                            Title = reader.GetString(1),
+                            Year = reader.GetInt32(3),
+                            Pages = reader.GetInt32(4)
+                        };
+                        result.Add(book);
+                    }
+                }
+            }
+
             return result;
         }
 
