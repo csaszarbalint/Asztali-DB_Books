@@ -62,6 +62,24 @@ namespace Books
                 Console.WriteLine(String.Join("\n", bookList.Select(book => $"{book.Id}, {book.Title}").ToList()));
                 //---------
 
+                // 8.feladat
+                bookList = bookList.Select(book => new Book
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    AuthorId = book.AuthorId,
+                    Author = authorList.FirstOrDefault(a => a.Id == book.AuthorId),
+                    Year = book.Year,
+                    Pages = book.Pages 
+                }).ToList();
+                
+                authorList = authorList.Select(author => new Author
+                {
+                    Id = author.Id,
+                    Name = author.Name,
+                    Books = bookList.Where(b => b.AuthorId == author.Id).ToList()
+                }).ToList();
+
                 return;
 
             }

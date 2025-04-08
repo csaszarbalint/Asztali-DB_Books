@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace Books.Access
 {
-    public class DbAuthor
+    public class DbAuthor : IAccessor<Author>
     {
         DbConnection _connection;
         public DbAuthor(DbConnection connection)

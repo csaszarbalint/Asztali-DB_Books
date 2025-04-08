@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="Access\DbAuthor.cs" />
     <Compile Include="Access\DbBook.cs" />
+    <Compile Include="Access\IAccessor.cs" />
     <Compile Include="Model\Author.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Program.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Books.Access
 {
-    public class DbBook
+    public class DbBook : IAccessor<Book>
     {
         DbConnection _connection;
         public DbBook(DbConnection connection)
@@ -43,6 +43,7 @@ namespace Books.Access
                         {
                             Id = reader.GetInt32(0),
                             Title = reader.GetString(1),
+                            AuthorId = reader.GetInt32(2),
                             Year = reader.GetInt32(3),
                             Pages = reader.GetInt32(4)
                         };
