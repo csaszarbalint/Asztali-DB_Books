@@ -13,7 +13,7 @@ namespace Books
         static void Main(string[] args)
         {
 
-            using (var conn = new MySqlConnection("server=localhost:3307,;uid=root;database=books"))
+            using (var conn = new MySqlConnection("server=localhost:3306,;uid=root;database=books"))
             {
                 conn.Open();
 
@@ -26,6 +26,7 @@ namespace Books
                     }
                 }
 
+                //---------------[dbAuthor]---------------
                 var dbAuthor = new DbAuthor(conn);
 
                 var newAuthor = new Author
@@ -34,18 +35,15 @@ namespace Books
                     Name = "James Clavell"
                 };
 
-                if (!dbAuthor.Create(newAuthor))
-                {
-                    Console.WriteLine("Hiba történt az író beszúrásakor!");
-                }
+                dbAuthor.Create(newAuthor);
 
                 var authorList = dbAuthor.Read();
                 Console.WriteLine(String.Join("\n", authorList.Select(author => $"{author.Id}, {author.Name}").ToList()));
+                //---------
 
                 Console.WriteLine();
-                
-                //----------------------------------------
 
+                //---------------[dbBook]---------------
                 var dbBook = new DbBook(conn);
 
                 Book newBook = new Book()
@@ -58,16 +56,12 @@ namespace Books
                     Pages = 300
                 };
 
-
-                // Ha a Create metódus visszatérési értéke false, akkor kiírunk egy hibaüzenetet.
-                if (!dbBook.Create(newBook))
-                {
-                    Console.WriteLine("Hiba történt az író beszúrásakor!");
-                }
+                dbBook.Create(newBook);
 
                 var bookList = dbBook.Read();
                 Console.WriteLine(String.Join("\n", bookList.Select(book => $"{book.Id}, {book.Title}").ToList()));
-                
+                //---------
+
                 return;
 
             }

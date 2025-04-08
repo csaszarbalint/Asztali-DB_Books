@@ -20,12 +20,10 @@ namespace Books.Access
         {
             using (var cmd = _connection.CreateCommand())
             {
-                cmd.CommandText = $"INSERT INTO book VALUES ({book.Id}, \"{book.Title}\", {book.AuthorId}, \"{book.Year}\", \"{book.Pages}\");"; 
+                cmd.CommandText = $"INSERT INTO book VALUES ({book.Id}, '{book.Title}', {book.AuthorId}, {book.Year}, {book.Pages});"; 
 
-                // A parancs végrehajtása az ExecuteNonQuery metódussal, melynek
-                // a visszatérési értéke a parancs által érintett sorok száma.
                 var rowCount = cmd.ExecuteNonQuery();
-                // Ha a parancs nem pontosan egy sort érintett, akkor hiba történhetett.
+
                 return rowCount == 1;
             }    
         }
@@ -41,7 +39,6 @@ namespace Books.Access
                 {
                     while (reader.Read())
                     {
-                        // Létrehozzuk az új Author példányt és
                         var book = new Book 
                         {
                             Id = reader.GetInt32(0),
