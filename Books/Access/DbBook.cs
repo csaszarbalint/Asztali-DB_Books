@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace Books.Access
 {
-    public class DbBook : IAccessor<Book>
+    public class DbBook : DbAccess<Book>
     {
-        DbConnection _connection;
         public DbBook(DbConnection connection)
+            : base(connection)
         {
-            _connection = connection;
         }
 
-        public bool Create(Book book)
+        public override bool Create(Book book)
         {
             using (var cmd = _connection.CreateCommand())
             {
@@ -28,7 +27,12 @@ namespace Books.Access
             }    
         }
 
-        public List<Book> Read()
+        public override Book Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<Book> Read()
         {
             var result = new List<Book>();
 
@@ -55,6 +59,14 @@ namespace Books.Access
             return result;
         }
 
+        public override Book Read(int id)
+        {
+            throw new NotImplementedException();
+        }
 
+        public override Book Update(int id, Book obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,15 +4,14 @@ using System.Data.Common;
 
 namespace Books.Access
 {
-    public class DbAuthor : IAccessor<Author>
+    public class DbAuthor : DbAccess<Author>
     {
-        DbConnection _connection;
-        public DbAuthor(DbConnection connection)
+        public DbAuthor(DbConnection connection) 
+            : base(connection)
         {
-            _connection = connection;
         }
 
-        public bool Create(Author author)
+        public override bool Create(Author author)
         {
             var isSuccessful = false;
             using (var cmd = _connection.CreateCommand())
@@ -26,7 +25,12 @@ namespace Books.Access
             return isSuccessful;
         }
 
-        public List<Author> Read()
+        public override Author Delete(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override IEnumerable<Author> Read()
         {
             var result = new List<Author>();
             using (var cmd = _connection.CreateCommand())
@@ -46,6 +50,16 @@ namespace Books.Access
                 }
             }
             return result;
+        }
+
+        public override Author Read(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override Author Update(int id, Author obj)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

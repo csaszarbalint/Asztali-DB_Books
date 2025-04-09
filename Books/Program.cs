@@ -26,6 +26,8 @@ namespace Books
                     }
                 }
 
+                var dbBook = new DbBook(conn);
+
                 //---------------[dbAuthor]---------------
                 var dbAuthor = new DbAuthor(conn);
 
@@ -44,7 +46,6 @@ namespace Books
                 Console.WriteLine();
 
                 //---------------[dbBook]---------------
-                var dbBook = new DbBook(conn);
 
                 Book newBook = new Book()
                 {

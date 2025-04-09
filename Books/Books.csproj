@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access\DbAccess.cs" />
     <Compile Include="Access\DbAuthor.cs" />
     <Compile Include="Access\DbBook.cs" />
     <Compile Include="Access\IAccessor.cs" />
