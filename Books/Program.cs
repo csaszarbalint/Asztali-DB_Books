@@ -13,7 +13,7 @@ namespace Books
         static void Main(string[] args)
         {
 
-            using (var conn = new MySqlConnection("server=localhost:3306,;uid=root;database=books"))
+            using (var conn = new MySqlConnection("server=localhost;port=3307;uid=root;database=books"))
             {
                 conn.Open();
 
